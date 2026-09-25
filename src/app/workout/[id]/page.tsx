@@ -4,7 +4,8 @@ import { useParams } from "next/navigation";
 import { Plus, Bookmark } from "lucide-react";
 import { getWorkout } from "@/api-file/api";
 import { usePlan, MAX_PLAN } from "@/context/PlanContext";
-import { Workout } from "@/types/workout";
+import { Workout } from "@/type/workout";
+
 
 export default function WorkoutDetails() {
   const { id } = useParams<{ id: string }>();

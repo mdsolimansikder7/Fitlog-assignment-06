@@ -1,8 +1,8 @@
 "use client";
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import toast from "react-hot-toast";
-import { Workout, PlanWorkout } from "@/types/workout";
-import { PlanContextType } from "@/types/PlanContextType";
+import { Workout, PlanWorkout } from "@/type/workout";
+import { PlanContextType } from "@/type/PlanContextType";
 
 export const MAX_PLAN = 5;
 
@@ -11,8 +11,8 @@ export const MAX_PLAN = 5;
 const PlanContext = createContext<PlanContextType | undefined>(undefined);
 
 export function PlanProvider({ children }: { children: ReactNode }) {
-  const [plan, setPlan] = useState<PlanWorkout[]>([]); // Today's Plan
-  const [saved, setSaved] = useState<Workout[]>([]); // Saved
+  const [plan, setPlan] = useState<PlanWorkout[]>([]); 
+  const [saved, setSaved] = useState<Workout[]>([]); 
   const [loaded, setLoaded] = useState(false);
 
   

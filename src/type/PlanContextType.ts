@@ -1,4 +1,6 @@
-type PlanContextType = {
+import { Workout, PlanWorkout } from "@/type/workout";
+
+ export type PlanContextType = {
   plan: PlanWorkout[];
   saved: Workout[];
   loaded: boolean;

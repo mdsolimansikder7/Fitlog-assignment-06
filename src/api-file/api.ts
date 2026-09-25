@@ -1,4 +1,4 @@
-import { Workout } from "@/types/workout";
+import { Workout } from "@/type/workout";
 
 
 const BASE = "https://api.abcz.workers.dev/api/fitlog";
