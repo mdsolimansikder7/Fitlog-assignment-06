@@ -6,7 +6,6 @@ import { getWorkout } from "@/api-file/api";
 import { usePlan, MAX_PLAN } from "@/context/PlanContext";
 import { Workout } from "@/type/workout";
 
-
 export default function WorkoutDetails() {
   const { id } = useParams<{ id: string }>();
   const { plan, addToPlan, saveForLater } = usePlan();
@@ -45,14 +44,14 @@ export default function WorkoutDetails() {
   ];
 
   return (
-    <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-2">
+    <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:gap-8 sm:py-10 md:grid-cols-2">
       {/* Left: image */}
       <img src={workout.image} alt={workout.name} className="w-full rounded-xl object-cover md:h-full" />
 
       {/* Right: details */}
       <div>
-        <h1 className="font-display text-4xl uppercase">{workout.name}</h1>
-        <p className="mt-2 text-gray-400">{workout.description}</p>
+        <h1 className="font-display text-3xl uppercase sm:text-4xl">{workout.name}</h1>
+        <p className="mt-2 text-sm text-gray-400 sm:text-base">{workout.description}</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {workout.muscleGroups.map((tag) => (
             <span key={tag} className="rounded-full border border-line px-3 py-1 text-xs font-semibold text-accent">
@@ -61,7 +60,7 @@ export default function WorkoutDetails() {
           ))}
         </div>
 
-        <h2 className="mb-2 mt-6 font-display text-xl uppercase">Key Specs</h2>
+        <h2 className="mb-2 mt-5 font-display text-lg uppercase sm:mt-6 sm:text-xl">Key Specs</h2>
         <div className="divide-y divide-line rounded-lg border border-line bg-card">
           {specs.map(([label, value]) => (
             <div key={label} className="flex justify-between px-4 py-2 text-sm">
@@ -71,7 +70,7 @@ export default function WorkoutDetails() {
           ))}
         </div>
 
-        <h2 className="mb-2 mt-6 font-display text-xl uppercase">Instructions</h2>
+        <h2 className="mb-2 mt-5 font-display text-lg uppercase sm:mt-6 sm:text-xl">Instructions</h2>
         <ol className="space-y-3">
           {workout.instructions.map((step, i) => (
             <li key={i} className="flex gap-3 text-sm text-gray-300">

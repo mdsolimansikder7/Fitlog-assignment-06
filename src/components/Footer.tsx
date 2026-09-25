@@ -8,7 +8,9 @@ export default function Footer() {
           <Image src={logo} alt="FitLog" className="h-7 w-7" />
           <span className="font-display text-lg tracking-wide text-white">FITLOG</span>
         </div>
-        <p>© 2026 FitLog — Workout Library. Train hard, log honest.</p>
+        <p className="max-w-xs px-2 text-xs sm:max-w-none sm:px-0 sm:text-sm">
+          © 2026 FitLog — Workout Library. Train hard, log honest.
+        </p>
       </div>
     </footer>
   );

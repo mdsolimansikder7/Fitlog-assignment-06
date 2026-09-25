@@ -21,7 +21,6 @@ export default function Home() {
       .finally(() => setLoading(false));
   }, []);
 
-  
   const shown = workouts
     .filter((w) => {
       const text = (w.name + " " + w.muscleGroups.join(" ")).toLowerCase();
@@ -29,8 +28,8 @@ export default function Home() {
     })
     .sort((a, b) => {
       if (sortBy === "duration") return a.duration - b.duration;
-      if (sortBy === "calories") return b.caloriesBurned - a.caloriesBurned; 
-      return b.rating - a.rating; 
+      if (sortBy === "calories") return b.caloriesBurned - a.caloriesBurned;
+      return b.rating - a.rating;
     });
 
   return (
@@ -39,28 +38,27 @@ export default function Home() {
       <section id="library" className="mx-auto max-w-7xl scroll-mt-20 px-4 pb-16">
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="font-display text-3xl uppercase">The Library</h2>
-            <p className="text-gray-400">Twelve lifts covering every major muscle group.</p>
+            <h2 className="font-display text-2xl uppercase sm:text-3xl">The Library</h2>
+            <p className="text-sm text-gray-400 sm:text-base">Twelve lifts covering every major muscle group.</p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name or tag"
-              className="rounded-md border border-line bg-card px-3 py-2 text-sm outline-none focus:border-accent"
+              className="w-full rounded-md border border-line bg-card px-3 py-2 text-sm outline-none focus:border-accent sm:w-auto"
             />
-            <div className="relative">
+            <div className="relative w-full sm:w-auto">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortKey)}
                 aria-label="Sort by"
-                className="appearance-none rounded-md border border-line bg-card py-2 pl-3 pr-9 text-sm outline-none focus:border-accent"
+                className="w-full appearance-none rounded-md border border-line bg-card py-2 pl-3 pr-9 text-sm outline-none focus:border-accent sm:w-auto"
               >
                 <option value="duration">Sort By: Duration</option>
                 <option value="calories">Sort By: Calories</option>
                 <option value="rating">Sort By: Rating</option>
               </select>
-              
             </div>
           </div>
         </div>
@@ -72,7 +70,7 @@ export default function Home() {
         )}
         {error && <p className="py-10 text-center text-red-400">{error}</p>}
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {shown.map((w) => (
             <WorkoutCard key={w.id} workout={w} />
           ))}
