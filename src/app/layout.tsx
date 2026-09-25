@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "FitLog — Workout Library",
   description: "Pick a lift, lock it into today's plan, and log every set.",
  icons: {
-    icon: "/public/favicon.svg",
+    icon: "/favicon.svg",
   },
 };
 
