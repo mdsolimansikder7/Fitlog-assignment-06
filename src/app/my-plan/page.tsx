@@ -1,13 +1,17 @@
 "use client";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Clock, Flame, Star, Check, X } from "lucide-react";
 import { usePlan } from "@/context/PlanContext";
 import { PlanWorkout } from "@/type/workout";
 
-export default function MyPlan() {
+function MyPlanContent() {
   const { plan, saved, loaded, removeFromPlan, removeFromSaved, markDone } = usePlan();
-  const [tab, setTab] = useState<"plan" | "saved">("plan");
+  const searchParams = useSearchParams();
+
+  const initialTab = searchParams.get("tab") === "saved" ? "saved" : "plan";
+  const [tab, setTab] = useState<"plan" | "saved">(initialTab);
 
   const list: PlanWorkout[] = tab === "plan" ? plan : saved.map((w) => ({ ...w, done: false }));
   const minutes = plan.reduce((sum, w) => sum + w.duration, 0);
@@ -29,7 +33,6 @@ export default function MyPlan() {
       <h1 className="font-display text-3xl uppercase sm:text-4xl">My Plan</h1>
       <p className="text-sm text-gray-400 sm:text-base">Cap of five lifts for today. Finish them, then load more.</p>
 
-      {/* Metrics */}
       <div className="mt-5 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3">
         {stats.map(([label, value]) => (
           <div key={label} className="rounded-lg border border-line bg-card p-3 text-center sm:p-4">
@@ -39,13 +42,11 @@ export default function MyPlan() {
         ))}
       </div>
 
-      {/* Tabs */}
       <div className="mt-5 flex gap-2 sm:mt-6">
         <button onClick={() => setTab("plan")} className={tabClass("plan")}>Today&apos;s Plan</button>
         <button onClick={() => setTab("saved")} className={tabClass("saved")}>Saved</button>
       </div>
 
-      {/* List */}
       <div className="mt-5 space-y-4 sm:mt-6">
         {!loaded && <p className="py-10 text-center text-gray-400">Loading workouts…</p>}
 
@@ -101,5 +102,13 @@ export default function MyPlan() {
           ))}
       </div>
     </div>
+  );
+}
+
+export default function MyPlan() {
+  return (
+    <Suspense fallback={<p className="py-32 text-center text-gray-400">Loading…</p>}>
+      <MyPlanContent />
+    </Suspense>
   );
 }
