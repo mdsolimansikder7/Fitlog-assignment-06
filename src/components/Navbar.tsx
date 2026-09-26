@@ -14,14 +14,15 @@ export default function Navbar() {
 
   const linkClass = (active: boolean) =>
     `btn btn-xs sm:btn-sm rounded-full font-medium ${
-      active ? "btn-primary text-black" : "btn-ghost text-gray-400 hover:text-white"
+      active
+        ? "btn-primary text-black"
+        : "btn-ghost text-gray-400 hover:text-white"
     }`;
 
   return (
     <div className="sticky top-0 z-40 border-b border-line bg-base-100/95 backdrop-blur">
       <div className="relative mx-auto max-w-7xl px-4 py-2">
         <div className="flex items-center justify-between">
-          {/* বামে: মোবাইলে হ্যামবার্গার + লোগো, ডেস্কটপে শুধু লোগো */}
           <div className="flex items-center gap-2">
             <button
               onClick={() => setOpen(!open)}
@@ -30,23 +31,39 @@ export default function Navbar() {
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-              <Image src={logo} alt="FitLog" className="h-7 w-7 sm:h-8 sm:w-8" />
-              <span className="font-display text-lg tracking-wide sm:text-xl">FITLOG</span>
+            <Link
+              href="/"
+              className="flex items-center gap-2"
+              onClick={() => setOpen(false)}
+            >
+              <Image
+                src={logo}
+                alt="FitLog"
+                className="h-7 w-7 sm:h-8 sm:w-8"
+              />
+              <span className="font-display text-lg tracking-wide sm:text-xl">
+                FITLOG
+              </span>
             </Link>
           </div>
 
-          {/* ডেস্কটপে: মাঝে Workout/My Plan লিংক */}
           <div className="hidden sm:flex sm:gap-1">
-            <Link href="/" className={linkClass(pathname === "/" || pathname.startsWith("/workout"))}>
+            <Link
+              href="/"
+              className={linkClass(
+                pathname === "/" || pathname.startsWith("/workout"),
+              )}
+            >
               Workout
             </Link>
-            <Link href="/my-plan" className={linkClass(pathname === "/my-plan")}>
+            <Link
+              href="/my-plan"
+              className={linkClass(pathname === "/my-plan")}
+            >
               My Plan
             </Link>
           </div>
 
-          {/* ডানে: Plan/Saved ব্যাজ — সব স্ক্রিনেই দেখাবে */}
           <div className="flex items-center gap-1.5 sm:gap-2">
             <Link
               href="/my-plan?tab=plan"
@@ -62,8 +79,6 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-
-        {/* মোবাইলে হ্যামবার্গার খুললে — বাম কোণায় ছোট ফ্লোটিং প্যানেল, লেআউট ঠেলে সরাবে না */}
         {open && (
           <div className="absolute left-4 top-full z-50 mt-2 w-40 rounded-lg border border-line bg-card p-1.5 shadow-lg sm:hidden">
             <Link
