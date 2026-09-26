@@ -11,10 +11,10 @@ const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FitLog — Workout Library",
+  title: "FitLog",
   description: "Pick a lift, lock it into today's plan, and log every set.",
  icons: {
-    icon: "/favicon.svg",
+    icon: "/icon.svg",
   },
 };
 
